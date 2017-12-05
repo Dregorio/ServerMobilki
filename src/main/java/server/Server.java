@@ -25,7 +25,6 @@ public class Server {
         try {
             listener = new ServerSocket(9090);
             gson = new Gson();
-            Class.forName("com.mysql.jdbc.Driver").newInstance();
 
             while (true) {
                 socket = listener.accept();
@@ -73,16 +72,10 @@ public class Server {
                     socket.close();
                 }
             }
-        }catch (ClassNotFoundException ce){
-            ce.printStackTrace();
         }catch (IOException e){
             System.out.println(e.getMessage());
             System.exit(-1);
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } finally {
+        }finally {
             try{
                 if (listener != null)
                     listener.close();
